@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -22,6 +23,14 @@ public class Main {
 
         String encoded = Encoder.encode(txt, codeTable);
         FileCompressor.compress(encoded, args[1],map);
+        int originalSize = txt.getBytes().length;
+        File file = new File(args[1]);
+        int compressedSize = (int) file.length();
+
+        System.out.println("original size: " + originalSize + " bytes");
+        System.out.println("Compressed size: " + compressedSize + " bytes");
+        double percentSaved = (1-(double) compressedSize/originalSize)*100;
+        System.out.println("Space saved: " + percentSaved +"%");
 
         String decompressed = FileCompressor.decompress(args[1]);
         System.out.println(decompressed);
