@@ -6,6 +6,9 @@ public class CodeGenerator {
             return;
         }
         if (node.left == null && node.right == null){
+            if (code.isEmpty()){
+                code = "0";
+            }
             codeTable.put(node.character,code);
         } else {
             generateCodes(node.left,code + "0",codeTable);

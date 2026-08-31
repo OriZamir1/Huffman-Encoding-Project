@@ -10,7 +10,6 @@ import java.nio.file.Path;
 public class Main {
     public static void main(String[] args) throws IOException {
         String txt = Files.readString(Path.of("input.txt"));
-
         HashMap<Character, Integer> map = FrequencyMap.buildFrequencyMap(txt);
         PriorityQueue<Node> queue = new PriorityQueue<>(Comparator.comparingInt(n -> n.frequency));
         for (Map.Entry<Character, Integer> entry : map.entrySet()) {

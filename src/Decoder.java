@@ -2,6 +2,14 @@ public class Decoder {
     public static String decode(String encoded, Node root) {
         StringBuilder result = new StringBuilder();
         Node current = root;
+
+        if (current.right == null && current.left == null){
+            for (int i = 0; i<encoded.length();i++){
+                result.append(current.character);
+            }
+            return result.toString();
+        }
+
         for (int i = 0; i < encoded.length(); i++) {
             if (encoded.charAt(i) == '0'){
                 current = current.left;
