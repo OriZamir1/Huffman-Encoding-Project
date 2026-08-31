@@ -9,7 +9,7 @@ import java.nio.file.Path;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String txt = Files.readString(Path.of("input.txt"));
+        String txt = Files.readString(Path.of(args[0]));
         HashMap<Character, Integer> map = FrequencyMap.buildFrequencyMap(txt);
         PriorityQueue<Node> queue = new PriorityQueue<>(Comparator.comparingInt(n -> n.frequency));
         for (Map.Entry<Character, Integer> entry : map.entrySet()) {
@@ -21,9 +21,9 @@ public class Main {
         CodeGenerator.generateCodes(root, "", codeTable);
 
         String encoded = Encoder.encode(txt, codeTable);
-        FileCompressor.compress(encoded, "compressed.bin",map);
+        FileCompressor.compress(encoded, args[1],map);
 
-        String decompressed = FileCompressor.decompress("compressed.bin");
+        String decompressed = FileCompressor.decompress(args[1]);
         System.out.println(decompressed);
     }
 }
